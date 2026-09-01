@@ -39,8 +39,8 @@ A demo-ready sports club/turf booking website built with Next.js 16, featuring a
 src/
 ├── app/
 │   ├── layout.tsx          # Root layout with Navigation & Footer
-│   ├── page.tsx             # Homepage
-│   ├── globals.css          # Global styles, CSS variables
+│   ├── page.tsx             # Homepage (uses animated sections)
+│   ├── globals.css          # Global styles, CSS variables, fonts
 │   ├── about/page.tsx       # About page
 │   ├── arena/page.tsx       # Venue details (single turf)
 │   ├── book/page.tsx        # 4-step booking wizard
@@ -56,6 +56,19 @@ src/
 │   │   ├── separator.tsx
 │   │   ├── sheet.tsx
 │   │   └── badge.tsx
+│   ├── animations/          # Framer Motion animation components
+│   │   ├── AnimatedText.tsx     # Word-by-word text reveal
+│   │   ├── AnimatedCounter.tsx  # Number counter animation
+│   │   ├── SportCard3D.tsx      # 3D tilt card effect
+│   │   ├── ScrollReveal.tsx     # Scroll-triggered animations
+│   │   └── index.ts             # Barrel exports
+│   ├── HeroSection.tsx      # Animated hero with text reveal
+│   ├── SportsSection.tsx    # 3D sport cards with stagger
+│   ├── ArenaSection.tsx     # Animated arena showcase
+│   ├── HowItWorksSection.tsx    # Animated steps
+│   ├── WhyChooseUsSection.tsx   # Animated features
+│   ├── TestimonialsSection.tsx  # Animated testimonials
+│   ├── CTASection.tsx       # Animated call-to-action
 │   ├── Navigation.tsx       # Header with mobile menu
 │   ├── Footer.tsx           # Footer with links
 │   └── TestimonialCarousel.tsx
@@ -228,3 +241,61 @@ npm start
 - Green-tinted dark backgrounds for authentic turf feel
 - Updated CSS custom properties in globals.css
 - Colors: Deep Black/Green background, Turf Green primary, Lime accents
+
+### Session 4: Typography Update
+- Implemented "Modern Tech Arena" font pairing
+- **Display/Headlines**: Syne (Extra Bold) - edgy, contemporary, premium feel
+- **Body/UI**: Geist - clean, readable for slot cards and forms
+- All h1-h6 elements automatically use Syne font
+- Added `.font-heading` utility class for manual use
+
+### Session 5: Framer Motion Animations
+- Added comprehensive animations throughout the homepage using Framer Motion
+
+**Animation Components Created** (`src/components/animations/`):
+- `AnimatedText.tsx` - Word-by-word text reveal with spring physics
+- `AnimatedCounter.tsx` - Number counter animation (counts up when visible)
+- `SportCard3D.tsx` - 3D tilt effect card with hover interactions
+- `ScrollReveal.tsx` - Reusable scroll-triggered fade animations
+- `index.ts` - Barrel exports for all animation components
+
+**Animated Section Components** (`src/components/`):
+- `HeroSection.tsx` - Text reveal, counter animation, pulsing badge, staggered buttons
+- `SportsSection.tsx` - 3D tilt cards with stagger reveal, emoji bounce, sport-colored glow
+- `ArenaSection.tsx` - Parallax-style reveal, floating cards, pulsing amenity dots
+- `HowItWorksSection.tsx` - Staggered cards, drawing connector lines, pulsing icons
+- `WhyChooseUsSection.tsx` - Feature cards with hover effects, floating location card
+- `TestimonialsSection.tsx` - Fade-up reveal for testimonials
+- `CTASection.tsx` - Animated background glows, bouncing arrow CTA
+
+**Animation Features**:
+| Feature | Description |
+|---------|-------------|
+| Text Reveal | Word-by-word animation with spring physics |
+| Counter Animation | Stats count up from 0 when scrolled into view |
+| 3D Tilt Effect | Sport cards tilt toward cursor (Apple TV style) |
+| Stagger Reveal | Elements animate in sequence with delays |
+| Scroll Fade-Up | Sections fade in and slide up on scroll |
+| Hover Micro-interactions | Scale, glow, and color transitions |
+| Floating Elements | Cards with subtle bounce/float animations |
+| Drawing Lines | Connector lines animate their stroke |
+
+**Reusable Animation Components**:
+```tsx
+// Fade in on scroll from any direction
+<ScrollReveal direction="up" delay={0.2}>
+  <Content />
+</ScrollReveal>
+
+// Stagger children animations
+<StaggerContainer staggerDelay={0.1}>
+  <StaggerItem>Item 1</StaggerItem>
+  <StaggerItem>Item 2</StaggerItem>
+</StaggerContainer>
+
+// Counter that animates when visible
+<AnimatedCounter value={100} suffix="+" duration={2} />
+
+// Text that reveals word by word
+<AnimatedText text="Hello World" delay={0.5} />
+```
